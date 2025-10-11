@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TechNow.id — Portal Berita Teknologi Terkini</title>
+  <meta name="description" content="Portal berita teknologi terkini: AI, cloud, semikonduktor, keamanan siber, gadget, dan startup. Update cepat, ringkas, dan akurat." />
+  <meta name="theme-color" content="#0f172a" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="TechNow.id — Portal Berita Teknologi Terkini" />
+  <meta property="og:description" content="Update harian seputar AI, cloud, chip, keamanan siber, dan gadget." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'><rect width='100%' height='100%' fill='%230f172a'/><text x='50%' y='50%' fill='white' font-size='64' text-anchor='middle' font-family='Inter,Arial'>TechNow.id</text></svg>" />
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"NewsMediaOrganization",
+    "name":"TechNow.id",
+    "url":"https://technow.id",
+    "logo":{"@type":"ImageObject","url":"https://technow.id/logo.png"},
+    "sameAs":["https://x.com/technowid","https://instagram.com/technowid"]
+  }
+  </script>
+  <style>
+    :root{
+      --bg: #0b1220; --card:#0f172a; --muted:#94a3b8; --text:#e2e8f0; --brand:#22d3ee; --accent:#a78bfa;
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:var(--brand);text-decoration:none}
+    header{position:sticky;top:0;background:linear-gradient(180deg,rgba(15,23,42,.9),rgba(15,23,42,.7));backdrop-filter: blur(8px);z-index:50;border-bottom:1px solid rgba(255,255,255,.06)}
+    .wrap{max-width:1200px;margin:0 auto;padding:16px}
+    .topbar{display:flex;gap:16px;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand-logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 180deg at 50% 50%, var(--brand), var(--accent));display:grid;place-items:center;color:#0b1220;font-weight:800}
+    .brand h1{font-size:20px;margin:0}
+    .controls{display:flex;gap:10px;align-items:center}
+    input[type="search"]{background:#0b1020;border:1px solid rgba(255,255,255,.08);color:var(--text);padding:10px 12px;border-radius:10px;min-width:260px}
+    select{background:#0b1020;border:1px solid rgba(255,255,255,.08);color:var(--text);padding:10px 12px;border-radius:10px}
+    button.toggle{background:#0b1020;border:1px solid rgba(255,255,255,.08);color:var(--text);padding:10px 12px;border-radius:10px;cursor:pointer}
+    main{padding:24px 16px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    article{grid-column:span 12;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);overflow:hidden;transition:transform .2s ease, box-shadow .2s ease}
+    article:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    @media(min-width:860px){article.span-6{grid-column:span 6}}
+    .thumb{aspect-ratio:16/9;width:100%;display:block;background:#0b1020}
+    .meta{display:flex;gap:10px;font-size:12px;color:var(--muted);padding:12px 16px;border-top:1px dashed rgba(255,255,255,.06)}
+    .chip{background:rgba(255,255,255,.06);padding:4px 10px;border-radius:999px}
+    .content{padding:16px}
+    .title{font-size:22px;line-height:1.3;margin:0 0 8px;font-weight:800}
+    .deck{color:#cbd5e1;margin:0 0 12px}
+    .by{font-size:12px;color:var(--muted)}
+    .tagbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .tag{font-size:12px;border:1px solid rgba(255,255,255,.08);padding:6px 10px;border-radius:999px;color:#e5e7eb}
+    footer{border-top:1px solid rgba(255,255,255,.06);padding:24px 16px;color:var(--muted)}
+    /* Nice scrollbar */
+    ::-webkit-scrollbar{height:10px;width:10px}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:10px}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap topbar">
+    <div class="brand">
+      <div class="brand-logo">T</div>
+      <h1>TechNow<span style="color:var(--brand)">.id</span></h1>
+    </div>
+    <div class="controls">
+      <input id="q" type="search" placeholder="Cari berita AI, cloud, chip..." aria-label="Cari berita" />
+      <select id="cat" aria-label="Filter kategori">
+        <option value="all">Semua Kategori</option>
+        <option value="AI">AI</option>
+        <option value="Cloud">Cloud</option>
+        <option value="Semikonduktor">Semikonduktor</option>
+        <option value="Keamanan">Keamanan</option>
+        <option value="Gadget">Gadget</option>
+      </select>
+      <button class="toggle" id="modeBtn" aria-label="Ganti tema">🌓 Tema</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="grid" id="newsGrid" aria-live="polite">
+
+    <!-- 1. Azure GB300 NVL72 -->
+    <article class="span-6" data-cat="Cloud AI Semikonduktor">
+      <img class="thumb" loading="lazy" alt="AI image: rak server cairan pendingin, GPU Blackwell bercahaya neon biru" 
+           src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='1200' height='675'><defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='%23132643'/><stop offset='1' stop-color='%2309c7e6'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><text x='50%' y='54%' fill='white' font-size='46' font-family='Inter' text-anchor='middle'>AI Render • Hyperscale GB300</text></svg>"/>
+      <div class="content">
+        <h2 class="title">Microsoft luncurkan klaster Azure “supercomputer-scale” berbasis NVIDIA GB300 NVL72</h2>
+        <p class="deck">4.608 GPU Blackwell Ultra disatukan menjadi akselerator tunggal setara ~92,1 exaFLOPS FP4 untuk inferensi, memangkas waktu latih model dari hitungan bulan ke pekan.</p>
+        <div class="by">TechNow Desk • 12 Okt 2025 • Kategori: Cloud, AI</div>
+        <div class="tagbar">
+          <span class="tag">#Azure</span><span class="tag">#NVIDIA</span><span class="tag">#Blackwell</span>
+        </div>
+      </div>
+      <div class="meta"><span class="chip">Fokus: Infrastruktur AI</span><span class="chip">Liquid cooling</span><span class="chip">Interkoneksi NVLink 5</span></div>
+    </article>
+
+    <!-- 2. Google Gemini 2.5 Computer Use -->
+    <article class="span-6" data-cat="AI">
+      <img class="thumb" loading="lazy" alt="AI image: agen AI mengoperasikan browser dengan tab-tab dan kursor dinamis" 
+           src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='1200' height='675'><rect width='100%' height='100%' fill='%23121a2b'/><circle cx='200' cy='160' r='110' fill='%233b82f6'/><rect x='380' y='120' width='700' height='430' rx='18' fill='%231f2937'/><text x='50%' y='56%' fill='white' font-size='40' text-anchor='middle' font-family='Inter'>AI Render • Browser Agent</text></svg>"/>
+      <div class="content">
+        <h2 class="title">Google rilis Gemini 2.5 “Computer Use”: agen AI bisa menavigasi web seperti manusia</h2>
+        <p class="deck">Model khusus UI ini mengeksekusi aksi berbasis penglihatan & penalaran—mengisi formulir, drag-drop, hingga otomasi pengujian; tersedia via Google AI Studio & Vertex AI.</p>
+        <div class="by">TechNow Desk • 12 Okt 2025 • Kategori: AI</div>
+        <div class="tagbar">
+          <span class="tag">#Gemini</span><span class="tag">#AgenticAI</span><span class="tag">#Automation</span>
+        </div>
+      </div>
+      <div class="meta"><span class="chip">Benchmarks web/mobile</span><span class="chip">Aksi terdefinisi</span><span class="chip">Latency lebih rendah</span></div>
+    </article>
+
+    <!-- 3. Gemini Enterprise (Google Cloud) -->
+    <article class="span-6" data-cat="AI Cloud">
+      <img class="thumb" loading="lazy" alt="AI image: dashboard enterprise dengan grafik data dan ikon kunci keamanan" 
+           src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='1200' height='675'><rect width='100%' height='100%' fill='%230f172a'/><rect x='90' y='120' width='960' height='420' rx='22' fill='%231e293b'/><text x='50%' y='55%' fill='white' font-size='42' text-anchor='middle' font-family='Inter'>AI Render • Gemini Enterprise</text></svg>"/>
+      <div class="content">
+        <h2 class="title">Google perkenalkan “Gemini Enterprise” untuk perusahaan: agentic AI skala kerja</h2>
+        <p class="deck">Platform baru menghadirkan akses aman ke data & alat kerja; early adopter seperti HCA Healthcare dan Best Buy melaporkan hasil awal yang positif.</p>
+        <div class="by">TechNow Desk • 12 Okt 2025 • Kategori: AI, Cloud</div>
+        <div class="tagbar">
+          <span class="tag">#GoogleCloud</span><span class="tag">#Workspace</span><span class="tag">#EnterpriseAI</span>
+        </div>
+      </div>
+      <div class="meta"><span class="chip">Integrasi ekosistem</span><span class="chip">Kontrol & keamanan</span></div>
+    </article>
+
+    <!-- 4. Nvidia Blackwell InferenceMAX -->
+    <article class="span-6" data-cat="Semikonduktor AI">
+      <img class="thumb" loading="lazy" alt="AI image: chip Blackwell dengan jejak sirkuit bercahaya" 
+           src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='1200' height='675'><defs><linearGradient id='g2' x1='0' x2='1'><stop stop-color='%23a78bfa'/><stop offset='1' stop-color='%2322d3ee'/></linearGradient></defs><rect width='100%' height='100%' fill='%23101a2a'/><rect x='220' y='140' width='760' height='400' rx='28' fill='url(%23g2)' opacity='0.25'/><text x='50%' y='54%' fill='white' font-size='44' text-anchor='middle' font-family='Inter'>AI Render • Blackwell Inference</text></svg>"/>
+      <div class="content">
+        <h2 class="title">Benchmark baru: NVIDIA Blackwell pimpin efisiensi & throughput pada InferenceMAX v1</h2>
+        <p class="deck">Pembaruan TensorRT-LLM menambah EP & DEP mappings; throughput per-GPU meningkat signifikan pada beban inferensi modern ber-konkurensi tinggi.</p>
+        <div class="by">TechNow Desk • 12 Okt 2025 • Kategori: Semikonduktor, AI</div>
+        <div class="tagbar">
+          <span class="tag">#Blackwell</span><span class="tag">#TensorRT</span><span class="tag">#LLM</span>
+        </div>
+      </div>
+      <div class="meta"><span class="chip">Optimasi parallelism</span><span class="chip">Efisiensi energi</span></div>
+    </article>
+
+    <!-- 5. Keamanan: ASCII smuggling di Gemini -->
+    <article class="span-6" data-cat="Keamanan AI">
+      <img class="thumb" loading="lazy" alt="AI image: perisai digital dengan karakter ASCII tersembunyi" 
+           src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='1200' height='675'><rect width='100%' height='100%' fill='%230e1628'/><text x='50%' y='48%' fill='%23e2e8f0' font-size='34' text-anchor='middle' font-family='Inter'>AI Render • ASCII Smuggling</text><text x='50%' y='58%' fill='%23a1a1aa' font-size='20' text-anchor='middle' font-family='monospace'>\u200B\u2060\u200E\u200F</text></svg>"/>
+      <div class="content">
+        <h2 class="title">Peneliti temukan celah “ASCII smuggling” di Gemini; Google: isu ini bersifat rekayasa sosial</h2>
+        <p class="deck">Instruksi tersembunyi via karakter khusus berpotensi memicu aksi tak diinginkan saat terintegrasi ke alur kerja email/kalender; Google menilai bukan bug keamanan.</p>
+        <div class="by">TechNow Desk • 12 Okt 2025 • Kategori: Keamanan, AI</div>
+        <div class="tagbar">
+          <span class="tag">#Security</span><span class="tag">#PromptInjection</span><span class="tag">#Workspace</span>
+        </div>
+      </div>
+      <div class="meta"><span class="chip">Vektor: input tak terlihat</span><span class="chip">Mitigasi: sanitasi</span></div>
+    </article>
+
+    <!-- 6. Apple — rumor produk Oktober / roadmap Mac -->
+    <article class="span-6" data-cat="Gadget">
+      <img class="thumb" loading="lazy" alt="AI image: laptop tipis dengan aura cahaya, panggung keynote minimalis" 
+           src="data:image/svg+xml;utf8,<?xml version='1.0'?><svg xmlns='http://www.w3.org/2000/svg' width='1200' height='675'><rect width='100%' height='100%' fill='%23111422'/><text x='50%' y='54%' fill='white' font-size='42' text-anchor='middle' font-family='Inter'>AI Render • Apple October</text></svg>"/>
+      <div class="content">
+        <h2 class="title">Menjelang acara Apple Oktober: pembaruan Mac & roadmap chip generasi berikut (rumor)</h2>
+        <p class="deck">Laporan terbaru memprediksi gelombang perangkat baru dan jadwal penyegaran lini Mac sampai 2026, sementara rumor peluncuran mingguan terus bergulir.</p>
+        <div class="by">TechNow Desk • 12 Okt 2025 • Kategori: Gadget</div>
+        <div class="tagbar">
+          <span class="tag">#Apple</span><span class="tag">#Mac</span><span class="tag">#Silicon</span>
+        </div>
+      </div>
+      <div class="meta"><span class="chip">Status: rumor</span><span class="chip">Perkembangan berkala</span></div>
+    </article>
+
+  </section>
+</main>
+
+<footer class="wrap">
+  <div>© 2025 TechNow.id • Dibangun cepat, ringan, dan SEO-friendly.</div>
+  <div>Catatan gambar: seluruh thumbnail adalah “AI-rendered placeholders” (SVG) dengan prompt ringkas pada atribut <code>alt</code>. Ganti dengan gambar AI kamu sendiri kapan pun.</div>
+</footer>
+
+<script>
+  // Tema
+  const btn = document.getElementById('modeBtn');
+  let dark = true;
+  btn.addEventListener('click', ()=> {
+    dark = !dark;
+    document.documentElement.style.setProperty('--bg', dark ? '#0b1220' : '#f8fafc');
+    document.documentElement.style.setProperty('--card', dark ? '#0f172a' : '#ffffff');
+    document.documentElement.style.setProperty('--text', dark ? '#e2e8f0' : '#0f172a');
+    document.documentElement.style.setProperty('--muted', dark ? '#94a3b8' : '#475569');
+  });
+
+  // Pencarian + filter kategori
+  const q = document.getElementById('q');
+  const cat = document.getElementById('cat');
+  const cards = [...document.querySelectorAll('article')];
+
+  function applyFilters(){
+    const term = q.value.toLowerCase().trim();
+    const category = cat.value;
+    cards.forEach(card=>{
+      const hay = card.innerText.toLowerCase();
+      const matchText = !term || hay.includes(term);
+      const matchCat = category==='all' || (card.dataset.cat || '').toLowerCase().includes(category.toLowerCase());
+      card.style.display = (matchText && matchCat) ? '' : 'none';
+    });
+  }
+  q.addEventListener('input',applyFilters);
+  cat.addEventListener('change',applyFilters);
+
+  // Prefetch sensitif: lazy-highlight kata kunci
+  if('requestIdleCallback' in window){
+    requestIdleCallback(()=> {
+      const kw = ['AI','Gemini','Blackwell','Apple','Azure'];
+      document.querySelectorAll('.deck').forEach(p=>{
+        let t = p.innerHTML;
+        kw.forEach(k=>{ t = t.replace(new RegExp(`\\b(${k})\\b`,'g'), '<strong>$1</strong>') });
+        p.innerHTML = t;
+      })
+    })
+  }
+</script>
+</body>
+</html>
