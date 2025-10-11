@@ -1,0 +1,3 @@
+Disallow: 
+Disallow: /cgi-bin/
+Sitemap: https://technow-sys.github.io/AI/sitemap.xml
